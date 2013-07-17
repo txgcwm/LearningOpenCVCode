@@ -41,39 +41,29 @@ vSeq* cvHoughCircles(
   );
 */
 
-
-
 #include <cv.h>
 #include <highgui.h>
 #include <math.h>
 
-int main(int argc, char** argv) {
-  IplImage* image = cvLoadImage( 
-    argv[1],
-    CV_LOAD_IMAGE_GRAYSCALE
-  );
- IplImage* src = cvLoadImage( argv[1] ); //Changed for prettier show in color
-  CvMemStorage* storage = cvCreateMemStorage(0);
-  cvSmooth(image, image, CV_GAUSSIAN, 5, 5 );
-   CvSeq* results = cvHoughCircles( 
-    image, 
-    storage, 
-    CV_HOUGH_GRADIENT, 
-    4, 
-    image->width/10 
-  ); 
-  for( int i = 0; i < results->total; i++ ) {
-    float* p = (float*) cvGetSeqElem( results, i );
-    CvPoint pt = cvPoint( cvRound( p[0] ), cvRound( p[1] ) );
-    cvCircle( 
-      src,
-      pt, 
-      cvRound( p[2] ),
-      CV_RGB(0xff,0,0) 
-    );
-  }
-  cvNamedWindow( "cvHoughCircles", 1 );
-  cvShowImage( "cvHoughCircles", src);
-  cvWaitKey(0);
+int main(int argc, char **argv)
+{
+	IplImage *image = cvLoadImage(argv[1],
+								  CV_LOAD_IMAGE_GRAYSCALE);
+	IplImage *src = cvLoadImage(argv[1]);	//Changed for prettier show in color
+	CvMemStorage *storage = cvCreateMemStorage(0);
+	cvSmooth(image, image, CV_GAUSSIAN, 5, 5);
+	CvSeq *results = cvHoughCircles(image,
+									storage,
+									CV_HOUGH_GRADIENT,
+									4,
+									image->width / 10);
+	for (int i = 0; i < results->total; i++) {
+		float *p = (float *)cvGetSeqElem(results, i);
+		CvPoint pt = cvPoint(cvRound(p[0]), cvRound(p[1]));
+		cvCircle(src, pt, cvRound(p[2]), CV_RGB(0xff, 0, 0)
+			);
+	}
+	cvNamedWindow("cvHoughCircles", 1);
+	cvShowImage("cvHoughCircles", src);
+	cvWaitKey(0);
 }
-

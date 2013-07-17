@@ -1,3 +1,3 @@
-how to compile a c file?
+how to compile a cpp file?
 
-gcc -o test test.c  `pkg-config --cflags --libs opencv`
+g++ -o test test.cpp  `pkg-config --cflags --libs opencv`

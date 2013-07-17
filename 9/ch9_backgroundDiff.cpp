@@ -18,28 +18,26 @@
 //
 // Return
 // 0 => background, 255 => foreground
-uchar cvBackgroundDiff( uchar *p, codeBook &c, int numChannels, 
-                        int *minMod, int *maxMod){
-   int matchChannel;
-   //SEE IF THIS FITS AN EXISTING CODEWORD
-   for(int i=0; i<c.numEntries; i++){
-      matchChannel = 0;
-      for(int n=0; n<numChannels; n++){
-         if((c.cb[i]->min[n] - minMod[n] <= *(p+n)) && 
-            (*(p+n) <= c.cb[i]->max[n] + maxMod[n])) 
-         {
-            matchChannel++; //Found an entry for this channel
-         }
-         else
-         {
-            break;
-         }
-      }
-      if(matchChannel == numChannels)
-      {
-         break; //Found an entry that matched all channels
-      }
-   }
-   if(i >= c.numEntries) return(255);
-   return(0);
+uchar cvBackgroundDiff(uchar * p, codeBook & c, int numChannels,
+					   int *minMod, int *maxMod)
+{
+	int matchChannel;
+	//SEE IF THIS FITS AN EXISTING CODEWORD
+	for (int i = 0; i < c.numEntries; i++) {
+		matchChannel = 0;
+		for (int n = 0; n < numChannels; n++) {
+			if ((c.cb[i]->min[n] - minMod[n] <= *(p + n)) &&
+				(*(p + n) <= c.cb[i]->max[n] + maxMod[n])) {
+				matchChannel++;	//Found an entry for this channel
+			} else {
+				break;
+			}
+		}
+		if (matchChannel == numChannels) {
+			break;				//Found an entry that matched all channels
+		}
+	}
+	if (i >= c.numEntries)
+		return (255);
+	return (0);
 }
