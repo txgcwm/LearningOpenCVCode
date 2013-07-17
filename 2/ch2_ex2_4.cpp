@@ -25,55 +25,57 @@
 #include "cv.h"
 #include "highgui.h"
 
-void example2_4( IplImage* image )
+void example2_4(IplImage * image)
 {
-    // Create some windows to show the input
-    // and output images in.
-    //
-    cvNamedWindow( "Example2_4-in", CV_WINDOW_AUTOSIZE );
-    cvNamedWindow( "Example2_4-out", CV_WINDOW_AUTOSIZE );
-    
-    // Create a window to show our input image
-    //
-    cvShowImage( "Example2_4-in", image );
-    
-    // Create an image to hold the smoothed output
-    //
-    IplImage* out = cvCreateImage(
-        cvGetSize(image),
-        IPL_DEPTH_8U,
-        3
-    );
-    
-    // Do the smoothing
-    //
-    cvSmooth( image, out, CV_GAUSSIAN, 5,5 );
-    cvSmooth( out, out, CV_GAUSSIAN, 5, 5);
-    
-    // Show the smoothed image in the output window
-    //
-    cvShowImage( "Example2_4-out", out );
-    
-    // Be tidy
-    //
-    cvReleaseImage( &out );
+	// Create some windows to show the input
+	// and output images in.
+	//
+	cvNamedWindow("Example2_4-in", CV_WINDOW_AUTOSIZE);
+	cvNamedWindow("Example2_4-out", CV_WINDOW_AUTOSIZE);
 
-    // Wait for the user to hit a key, then clean up the windows
-    //
-    cvWaitKey( 0 ); 
-    cvDestroyWindow("Example2_4-in" );
-    cvDestroyWindow("Example2_4-out" );
-    
+	// Create a window to show our input image
+	//
+	cvShowImage("Example2_4-in", image);
+
+	// Create an image to hold the smoothed output
+	//
+	IplImage *out = cvCreateImage(cvGetSize(image),
+								  IPL_DEPTH_8U,
+								  3);
+
+	// Do the smoothing
+	//
+	cvSmooth(image, out, CV_GAUSSIAN, 5, 5);
+	cvSmooth(out, out, CV_GAUSSIAN, 5, 5);
+
+	// Show the smoothed image in the output window
+	//
+	cvShowImage("Example2_4-out", out);
+
+	// Be tidy
+	//
+	cvReleaseImage(&out);
+
+	// Wait for the user to hit a key, then clean up the windows
+	//
+	cvWaitKey(0);
+	cvDestroyWindow("Example2_4-in");
+	cvDestroyWindow("Example2_4-out");
+
+	return;
 }
 
-int main( int argc, char** argv )
+int main(int argc, char **argv)
 {
-  IplImage* img = cvLoadImage( argv[1] );
-  cvNamedWindow("Example1", CV_WINDOW_AUTOSIZE );
-  cvShowImage("Example1", img );
-  example2_4( img );
+	IplImage *img = NULL;
+
+	img = cvLoadImage(argv[1]);
+	cvNamedWindow("Example1", CV_WINDOW_AUTOSIZE);
+	cvShowImage("Example1", img);
+	example2_4(img);
 //  cvWaitKey(0);
-  cvReleaseImage( &img );
-  cvDestroyWindow("Example1");
-}
+	cvReleaseImage(&img);
+	cvDestroyWindow("Example1");
 
+	return 0;
+}
