@@ -32,7 +32,7 @@ IplImage *doPyrDown(IplImage * in, int filter = IPL_GAUSSIAN_5x5)
 	//
 	assert(in->width % 2 == 0 && in->height % 2 == 0);
 
-	IplImage *out = cvCreateImage(cvSize(in->width/2, in->height/2),
+	IplImage *out = cvCreateImage(cvSize(in->width / 2, in->height / 2),
 								  in->depth,
 								  in->nChannels);
 	cvPyrDown(in, out);
@@ -46,7 +46,9 @@ int main(int argc, char **argv)
 	IplImage *img2 = NULL;
 
 	img = cvLoadImage(argv[1]);
-	img2 = cvCreateImage(cvSize(img->width/2, img->height/2), img->depth, img->nChannels);
+	img2 =
+		cvCreateImage(cvSize(img->width / 2, img->height / 2), img->depth,
+					  img->nChannels);
 	cvNamedWindow("Example1", CV_WINDOW_AUTOSIZE);
 	cvNamedWindow("Example2", CV_WINDOW_AUTOSIZE);
 	cvShowImage("Example1", img);

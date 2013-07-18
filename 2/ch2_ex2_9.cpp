@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 	IplImage *frame = NULL;
 
 	cvNamedWindow("Example2_9", CV_WINDOW_AUTOSIZE);
-	
+
 	if (argc == 1) {
 		capture = cvCreateCameraCapture(0);
 	} else {

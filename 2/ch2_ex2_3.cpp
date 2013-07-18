@@ -93,7 +93,7 @@ int main(int argc, char **argv)
 
 	cvCreateTrackbar("Position",
 					 "Example2_3", &g_slider_position, frames, onTrackbarSlide);
-	
+
 	frames = 0;
 
 	while (1) {

@@ -31,7 +31,7 @@ int main(int argc, char **argv)
 	cvNamedWindow("Example2", CV_WINDOW_AUTOSIZE);
 	//CvCapture* capture = cvCaptureFromAVI( argv[1] ); // either one will work
 	CvCapture *capture = cvCreateFileCapture(argv[1]);
-	
+
 	while (1) {
 		frame = cvQueryFrame(capture);
 		if (!frame)
